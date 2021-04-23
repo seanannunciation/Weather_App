@@ -1,0 +1,46 @@
+<div class="container">
+    <mat-form-field class="example-form-field">
+        <mat-label>Location</mat-label>
+        <input matInput type="text" [(ngModel)]="search">    
+    </mat-form-field>
+    <button mat-button aria-label="search" (click)="onSearch()">Search</button>
+    <button mat-button aria-label="search" (click)="addList()">Add to List</button><br>
+    <mat-form-field>
+        <mat-label>Favourite List</mat-label>
+        <mat-select [ngModel]="searchVal" (ngModelChange)="selectChange($event)">
+          <mat-option *ngFor="let search of searchList" [value]="search">
+            {{search}}
+          </mat-option>
+        </mat-select>
+    </mat-form-field>
+    <div>
+        <mat-tab-group>
+            <mat-tab label="Today">
+                <h4>Current Temp: {{ currentTemp ? currentTemp :null }} {{currentTUnit}}</h4> 
+                <h4>High: {{maxTemp ? maxTemp : null}}</h4>
+                <h4>Low: {{ minTemp ? minTemp : null}}</h4>
+                <h2>Hourly Forecast</h2>
+                <div *ngFor="let val of displayHourly">
+                    <mat-card class="mr-5 ml-5">
+                        <h3>{{val.time | date:'shortTime'}}</h3>
+                        <h3>Temp : {{val.temp}} {{val.tempUnit}}</h3>
+                        <h3>Forecast - {{val.forecast}}</h3>
+                    </mat-card>
+                </div>
+            </mat-tab>
+            <mat-tab label="7-Day">
+                <div *ngFor="let value of displayWeek">
+                    <mat-card class="mr-5 ml-5">
+                        <h3>{{value.day}}</h3>
+                        <h2>{{value.date | date:'shortDate'}}</h2>
+                        <h1>Temp : {{value.temp}} {{value.tempUnit}}</h1>
+                        <h1>Forecast - {{value.forecast}}</h1>
+                    </mat-card>
+                </div>
+            </mat-tab>
+            
+        </mat-tab-group>
+    </div>
+</div>
+
+
