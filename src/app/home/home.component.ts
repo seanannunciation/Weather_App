@@ -11,7 +11,7 @@ import { ApiServiceService } from '../api-service.service';
 export class HomeComponent implements OnInit {
 
   search: string = '';
-  key ='AIzaSyBj8UTS8ZMWWvPtBuAZjfmUm3rUA4QZoHo';
+  
   array: Array<any>;
   currentTemp = "";
   currentTUnit = "";
